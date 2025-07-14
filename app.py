@@ -39,7 +39,7 @@ if result:
 
         st.session_state["user_id"] = user_info["id"]
         st.session_state["email"] = user_info["email"]
-        st.success(f"✅ Logged in as: {user_info['email']} with User Id: {user_info['id']}")
+        st.success(f"✅ Logged in as: {user_info['email']}")
 
         # === Header Bar ===
         col1, col2, col3 = st.columns([4, 4, 2])
@@ -47,40 +47,10 @@ if result:
             st.write(f"👤 **User ID:** `{st.session_state['user_id']}`")
         with col2:
             st.write(f"📧 **Email:** `{st.session_state['email']}`")
-        with col3:
-            st.markdown("[➡️ Go to RAG Page](?page=Rag)", unsafe_allow_html=True)
             # 👉 Now you can show upload/chat/dashboard here
             # === Upload Section ===
         
         
-        st.subheader("📤 Upload PDF")
-        uploaded_file = st.file_uploader("Choose a PDF", type="pdf")
-        if uploaded_file and st.button("Upload"):
-            files = {"file": uploaded_file}
-            data = {"user_id": st.session_state["user_id"]}
-            try:
-                response = requests.post("https://your-backend-url/upload", files=files, data=data)
-                if response.status_code == 200:
-                    st.success("✅ Upload successful!")
-                else:
-                    st.error(f"Upload failed: {response.text}")
-            except Exception as e:
-                st.error(f"❌ Error: {e}")
-
-        # === Chat Section ===
-        st.subheader("💬 Ask a Question")
-        query = st.text_area("Enter your question")
-        if st.button("Ask"):
-            payload = {"question": query}
-            try:
-                response = requests.post("https://your-backend-url/chat", json=payload)
-                if response.status_code == 200:
-                    st.markdown(f"**Answer:** {response.json()['answer']}")
-                else:
-                    st.error(f"Chat failed: {response.text}")
-            except Exception as e:
-                st.error(f"❌ Error: {e}")
-
     else:
         st.warning("🔐 Waiting for Google authorization... Please complete login.")
 
