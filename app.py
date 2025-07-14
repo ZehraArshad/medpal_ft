@@ -49,6 +49,8 @@ if result:
             st.write(f"📧 **Email:** `{st.session_state['email']}`")
             # 👉 Now you can show upload/chat/dashboard here
             # === Upload Section ===
+        with col3: 
+            st.write(f"Navigate to Rag to start using 👈")
         
         
     else:
