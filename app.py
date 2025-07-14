@@ -5,9 +5,8 @@ import requests
 # === Config ===
 client_id = st.secrets["google"]["client_id"]
 client_secret = st.secrets["google"]["client_secret"]
-# redirect_uri = "http://localhost:8501"  # later: your deployed URL
+redirect_uri  = st.secrets["google"]["redirect_uri"]
 
-redirect_uri = "https://medpal.streamlit.app"
 # === OAuth Component ===
 oauth2 = OAuth2Component(
     client_id=client_id,
