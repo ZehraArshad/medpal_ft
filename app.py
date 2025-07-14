@@ -17,8 +17,7 @@ oauth2 = OAuth2Component(
 
 # === UI ===
 st.set_page_config(page_title="MedPal", page_icon="🩺")
-st.title("🩺 MedPal PDF Assistant")
-
+st.markdown("<h1 style='margin-bottom: 10px;'>🩺 MedPal PDF Assistant</h1>", unsafe_allow_html=True)
 result = oauth2.authorize_button(
     name="Continue with Google",
     redirect_uri=redirect_uri,
@@ -42,8 +41,18 @@ if result:
         st.session_state["email"] = user_info["email"]
         st.success(f"✅ Logged in as: {user_info['email']} with User Id: {user_info['id']}")
 
-        # 👉 Now you can show upload/chat/dashboard here
+        # === Header Bar ===
+        col1, col2, col3 = st.columns([4, 4, 2])
+        with col1:
+            st.write(f"👤 **User ID:** `{st.session_state['user_id']}`")
+        with col2:
+            st.write(f"📧 **Email:** `{st.session_state['email']}`")
+        with col3:
+            st.markdown("[➡️ Go to RAG Page](?page=Rag)", unsafe_allow_html=True)
+            # 👉 Now you can show upload/chat/dashboard here
             # === Upload Section ===
+        
+        
         st.subheader("📤 Upload PDF")
         uploaded_file = st.file_uploader("Choose a PDF", type="pdf")
         if uploaded_file and st.button("Upload"):
