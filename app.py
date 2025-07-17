@@ -50,7 +50,7 @@ if result:
             # 👉 Now you can show upload/chat/dashboard here
             # === Upload Section ===
         with col3: 
-            st.write(f"Navigate to Rag to start using 👈")
+            st.write(f"Navigate to Rag 👈")
         
         
     else:

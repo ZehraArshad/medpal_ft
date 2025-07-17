@@ -4,6 +4,7 @@ import base64
 from datetime import datetime
 from bson.binary import Binary
 from pymongo.server_api import ServerApi
+import base64
 
 
 # Assuming DB and collection are already set up
@@ -25,13 +26,20 @@ for doc in docs:
     st.markdown(f"**📎 Filename:** {doc['filename']}")
     st.markdown(f"🕒 Uploaded on: `{doc['upload_time'].strftime('%Y-%m-%d %H:%M:%S')}`")
 
-    # Convert binary to base64
-    pdf_bytes = doc["file"]
-    base64_pdf = base64.b64encode(pdf_bytes).decode("utf-8")
+    st.download_button(
+        label="📥 Download PDF",
+        data=doc["file"],
+        file_name=doc['filename'],
+        mime="application/pdf"
+    )
 
-    # Streamlit's built-in PDF viewer using iframe
-    pdf_display = f"""
-        <iframe src="data:application/pdf;base64,{base64_pdf}" width="700" height="500" type="application/pdf"></iframe>
-    """
-    st.markdown(pdf_display, unsafe_allow_html=True)
     st.markdown("---")
+    # st.markdown("OR view it below:")
+
+    # base64_pdf = base64.b64encode(doc["file"]).decode("utf-8")
+
+    # st.components.v1.html(f"""
+    #     <iframe src="data:application/pdf;base64,{base64_pdf}" width="100%" height="600px"></iframe>
+    # """, height=650)
+
+    # st.markdown("---")
