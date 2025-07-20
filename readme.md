@@ -40,7 +40,6 @@ All of this is powered by a Retrieval-Augmented Generation (RAG) pipeline integr
 - Cohere – For generating text embeddings  
 - Qdrant – As the vector database for storing PDF chunks  
 - Groq – For running the LLM and generating smart responses  
-[I'm Backend](https://github.com/ZehraArshad/Hack_Sub)
 ---
 
 ## 🚀 How It Works
