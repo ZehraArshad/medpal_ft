@@ -23,7 +23,7 @@ if "user_id" not in st.session_state:
     st.warning("🔐 Please log in on the Home page first.")
     st.stop()
 
-API_BASE = "https://hacksub-production.up.railway.app"
+API_BASE = "https://medpal-flask.onrender.com"
 UPLOAD_URL = f"{API_BASE}/upload"
 CHAT_URL   = f"{API_BASE}/chat"
 
